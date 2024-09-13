@@ -13,17 +13,17 @@ namespace ToDoList.Data
         public TaskDatabase(string dbPath)
         {
             _database = new SQLiteAsyncConnection(dbPath);
-            _database.CreateTableAsync<tarea>().Wait();
+            _database.CreateTableAsync<Tarea>().Wait();
         }
 
-        public Task<List<tarea>> GetTasksAsync()
+        public Task<List<Tarea>> GetTasksAsync()
         {
-            return _database.Table<tarea>().ToListAsync();
+            return _database.Table<Tarea>().ToListAsync();
         }
 
-        public Task<int> SaveTaskAsync(tarea task)
+        public Task<int> SaveTaskAsync(Tarea task)
         {
-            if (task.id != 0)
+            if (task.Id != 0)
             {
                 return _database.UpdateAsync(task);
             }
@@ -33,7 +33,7 @@ namespace ToDoList.Data
             }
         }
 
-        public Task<int> DeleteTaskAsync(tarea task)
+        public Task<int> DeleteTaskAsync(Tarea task)
         {
             return _database.DeleteAsync(task);
         }
