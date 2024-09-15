@@ -1,21 +1,22 @@
 ﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using TodoList.Modelo;
-using Xamarin.Forms;
+using ToDoList.modelo;
+using Microsoft.Maui.Controls;
+using TodoList_PaolaDeras;
 
 
-namespace TodoList.VistaModelo
+namespace ToDoList.VistaModelo
 {
     public class VistaModelo : BindableObject
     {
-        public ObservableCollection<Task> Tasks { get; set; }
+        public ObservableCollection<Tarea> Tasks { get; set; }
 
         public ICommand AddTaskCommand { get; }
 
         public VistaModelo()
         {
-            Tasks = new ObservableCollection<Task>();
+            Tasks = new ObservableCollection<Tarea>();
             AddTaskCommand = new Command(async () => await AddTask());
 
             LoadTasks();
@@ -26,20 +27,20 @@ namespace TodoList.VistaModelo
             var tasks = await App.Database.GetTasksAsync();
             foreach (var task in tasks)
             {
-                Tasks.Add(Tarea);
+                Tasks.Add(task);
             }
         }
 
         private async Task AddTask()
         {
-            var newTask = new Task { Title = "Crear nueva tarea", Description = "Descripción", Status = "Por hacer", IsCompleted = false };
+            var newTask = new Tarea { Titulo = "Crear nueva tarea", Descripcion = "Descripción", Estado = "Por hacer", Completada = false };
             await App.Database.SaveTaskAsync(newTask);
             Tasks.Add(newTask);
         }
 
-        public async Task UpdateTaskAsync(Task Tarea)
+        public async Task UpdateTaskAsync(Tarea tarea)
         {
-            await App.Database.SaveTaskAsync(Tarea);
+            await App.Database.SaveTaskAsync(tarea);
         }
     }
 }
