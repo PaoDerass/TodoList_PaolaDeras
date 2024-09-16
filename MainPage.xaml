@@ -8,6 +8,9 @@
 
     <StackLayout Padding="20">
 
+        
+        <Entry Placeholder="Título de la nueva tarea" Text="{Binding NuevoTituloTarea}" />
+
         <CollectionView ItemsSource="{Binding Tasks}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
@@ -22,7 +25,7 @@
         
         <Button Text="Agregar Tarea" Command="{Binding AddTaskCommand}" />
 
-        
+       
         <Button Text="Eliminar Tareas Seleccionadas" Command="{Binding DeleteSelectedTasksCommand}" />
 
     </StackLayout>

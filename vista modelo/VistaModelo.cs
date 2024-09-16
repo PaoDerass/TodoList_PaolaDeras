@@ -12,6 +12,17 @@ namespace ToDoList.VistaModelo
     {
         public ObservableCollection<Tarea> Tasks { get; set; }
 
+        private string _nuevoTituloTarea;
+        public string NuevoTituloTarea
+        {
+            get => _nuevoTituloTarea;
+            set
+            {
+                _nuevoTituloTarea = value;
+                OnPropertyChanged(); 
+            }
+        }
+
         public ICommand AddTaskCommand { get; }
         public ICommand DeleteSelectedTasksCommand { get; }
 
@@ -35,7 +46,7 @@ namespace ToDoList.VistaModelo
 
         private async Task AddTask()
         {
-            if (!string.IsNullOrWhiteSpace(NuevoTituloTarea))
+            if (!string.IsNullOrWhiteSpace(NuevoTituloTarea)) 
             {
                 var newTask = new Tarea
                 {
@@ -47,7 +58,7 @@ namespace ToDoList.VistaModelo
 
                 await App.Database.SaveTaskAsync(newTask);
                 Tasks.Add(newTask);
-                NuevoTituloTarea = string.Empty;
+                NuevoTituloTarea = string.Empty; 
             }
         }
 
