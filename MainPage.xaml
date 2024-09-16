@@ -8,8 +8,12 @@
 
     <StackLayout Padding="20">
 
-        
-        <Entry Placeholder="Título de la nueva tarea" Text="{Binding NuevoTituloTarea}" />
+
+        <Grid Padding="20" ColumnDefinitions="*, Auto" RowDefinitions="Auto, *">
+            <Entry Placeholder="Título de la nueva tarea" Text="{Binding NuevoTituloTarea}" Grid.Column="0" />
+            <Button Text="Agregar Tarea" Command="{Binding AddTaskCommand}" Grid.Column="1" />
+        </Grid>
+
 
         <CollectionView ItemsSource="{Binding Tasks}">
             <CollectionView.ItemTemplate>
@@ -23,7 +27,6 @@
         </CollectionView>
 
         
-        <Button Text="Agregar Tarea" Command="{Binding AddTaskCommand}" />
 
        
         <Button Text="Eliminar Tareas Seleccionadas" Command="{Binding DeleteSelectedTasksCommand}" />
