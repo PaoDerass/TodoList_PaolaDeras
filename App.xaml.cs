@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using ToDoList.Data;
 using Xamarin.Essentials;
+using Microsoft.Maui.Controls;
 
 namespace TodoList_PaolaDeras
 {
@@ -24,6 +25,7 @@ namespace TodoList_PaolaDeras
         public App()
         {
             InitializeComponent();
+            MainPage = new MainPage();
         }
     }
 }

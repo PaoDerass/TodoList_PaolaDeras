@@ -37,6 +37,8 @@ namespace ToDoList.Data
         {
             return _database.DeleteAsync(task);
         }
+
+    
     }
 
 }
