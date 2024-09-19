@@ -6,30 +6,33 @@
         <local:VistaModelo/>
     </ContentPage.BindingContext>
 
-    <StackLayout Padding="20">
-
-
-        <Grid Padding="20" ColumnDefinitions="*, Auto" RowDefinitions="Auto, *">
-            <Entry Placeholder="Título de la nueva tarea" Text="{Binding NuevoTituloTarea}" Grid.Column="0" />
-            <Button Text="Agregar Tarea" Command="{Binding AddTaskCommand}" Grid.Column="1" />
-        </Grid>
-
-
-        <CollectionView ItemsSource="{Binding Tasks}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout Padding="10" Orientation="Horizontal">
-                        <CheckBox IsChecked="{Binding Completada, Mode=TwoWay}" />
-                        <Label Text="{Binding Titulo}" FontSize="Medium" />
-                    </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-
-        
-
+    <Grid RowDefinitions="*, Auto" Padding="20">
        
-        <Button Text="Eliminar Tareas Seleccionadas" Command="{Binding DeleteSelectedTasksCommand}" />
+        <ScrollView Grid.Row="0">
+            <StackLayout>
+                <Grid Padding="20" ColumnDefinitions="*, Auto" RowDefinitions="Auto, *">
+                    <Entry Placeholder="Título de la nueva tarea" Text="{Binding NuevoTituloTarea}" Grid.Column="0" />
+                    <Button Text="Agregar Tarea" Command="{Binding AddTaskCommand}" Grid.Column="1" />
+                </Grid>
 
-    </StackLayout>
+               
+                <CollectionView ItemsSource="{Binding Tasks}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Padding="10" Orientation="Horizontal">
+                                <CheckBox IsChecked="{Binding Completada, Mode=TwoWay}" />
+                                <Label Text="{Binding Titulo}" FontSize="Medium" />
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </ScrollView>
+
+      
+        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Grid.Row="1" Spacing="10">
+            <Button Text="Actualizar" Command="{Binding UpdateTasksCommand}" HorizontalOptions="FillAndExpand" />
+            <Button Text="Eliminar Tareas Seleccionadas" Command="{Binding DeleteSelectedTasksCommand}" HorizontalOptions="FillAndExpand" />
+        </StackLayout>
+    </Grid>
 </ContentPage>
