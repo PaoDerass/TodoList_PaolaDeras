@@ -9,7 +9,6 @@ namespace ToDoList.Data
     {
         private readonly SQLiteAsyncConnection _database;
 
-
         public TaskDatabase(string dbPath)
         {
             _database = new SQLiteAsyncConnection(dbPath);
@@ -37,8 +36,5 @@ namespace ToDoList.Data
         {
             return _database.DeleteAsync(task);
         }
-
-    
     }
-
 }

@@ -2,12 +2,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:ToDoList.VistaModelo"
              x:Class="TodoList_PaolaDeras.MainPage">
+
     <ContentPage.BindingContext>
         <local:VistaModelo/>
     </ContentPage.BindingContext>
 
     <Grid RowDefinitions="*, Auto" Padding="20">
-       
         <ScrollView Grid.Row="0">
             <StackLayout>
                 <Grid Padding="20" ColumnDefinitions="*, Auto" RowDefinitions="Auto, *">
@@ -15,24 +15,23 @@
                     <Button Text="Agregar Tarea" Command="{Binding AddTaskCommand}" Grid.Column="1" />
                 </Grid>
 
-               
-                <CollectionView ItemsSource="{Binding Tasks}">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <StackLayout Padding="10" Orientation="Horizontal">
-                                <CheckBox IsChecked="{Binding Completada, Mode=TwoWay}" />
-                                <Label Text="{Binding Titulo}" FontSize="Medium" />
-                            </StackLayout>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
+                <CollectionView ItemsSource="{Binding Tasks}" SelectionMode="None" SelectedItem="{Binding SelectedTask, Mode=TwoWay}">
+    <CollectionView.ItemTemplate>
+        <DataTemplate>
+            <StackLayout Padding="10" Orientation="Horizontal">
+                <CheckBox IsChecked="{Binding Completada, Mode=TwoWay}" />
+                <Entry Text="{Binding Titulo, Mode=TwoWay}" FontSize="Medium" />
+            </StackLayout>
+        </DataTemplate>
+    </CollectionView.ItemTemplate>
+</CollectionView>
             </StackLayout>
         </ScrollView>
 
-      
+
         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Grid.Row="1" Spacing="10">
-            <Button Text="Actualizar" Command="{Binding UpdateTasksCommand}" HorizontalOptions="FillAndExpand" />
             <Button Text="Eliminar Tareas Seleccionadas" Command="{Binding DeleteSelectedTasksCommand}" HorizontalOptions="FillAndExpand" />
+            
         </StackLayout>
     </Grid>
 </ContentPage>
