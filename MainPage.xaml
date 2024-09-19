@@ -30,17 +30,35 @@
                 <CollectionView ItemsSource="{Binding Tasks}" SelectionMode="None" SelectedItem="{Binding SelectedTask, Mode=TwoWay}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <StackLayout Padding="10" Orientation="Horizontal">
-                                <CheckBox IsChecked="{Binding Completada, Mode=TwoWay}" />
+                            <Grid Padding="10" ColumnDefinitions="Auto, *, Auto">
+                                
+                                <CheckBox IsChecked="{Binding Completada, Mode=TwoWay}" 
+                          Grid.Column="0" 
+                          VerticalOptions="Center" />
+
+                               
                                 <Entry Text="{Binding Titulo, Mode=TwoWay}" 
-                                       FontSize="Medium" 
-                                       BackgroundColor="#D9C8E7"
-                                       TextColor="#4B3C77"
-                                        />
-                            </StackLayout>
+                       FontSize="Medium" 
+                       BackgroundColor="#D9C8E7"
+                       TextColor="#4B3C77"
+                       Grid.Column="1"
+                       VerticalOptions="Center"
+                       HorizontalOptions="FillAndExpand" />
+
+                               
+                                <Button Text="Editar" 
+                        Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.UpdateTaskCommand}" 
+                        CommandParameter="{Binding .}"
+                        Grid.Column="2"
+                        BackgroundColor="#A267A4"
+                        TextColor="White"
+                        CornerRadius="5"
+                        VerticalOptions="Center" />
+                            </Grid>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
+
             </StackLayout>
         </ScrollView>
 

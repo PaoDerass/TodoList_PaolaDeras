@@ -20,15 +20,23 @@ namespace ToDoList.Data
             return _database.Table<Tarea>().ToListAsync();
         }
 
-        public Task<int> SaveTaskAsync(Tarea task)
+        public async Task<int> SaveTaskAsync(Tarea task)
         {
-            if (task.Id != 0)
+            try
             {
-                return _database.UpdateAsync(task);
+                if (task.Id != 0)
+                {
+                    return await _database.UpdateAsync(task);
+                }
+                else
+                {
+                    return await _database.InsertAsync(task);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                return _database.InsertAsync(task);
+                System.Diagnostics.Debug.WriteLine($"No se pudo guradar la tarea: {ex.Message}");
+                return 0;
             }
         }
 
