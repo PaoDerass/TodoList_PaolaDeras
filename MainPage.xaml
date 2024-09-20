@@ -46,7 +46,7 @@
                        HorizontalOptions="FillAndExpand" />
 
                                
-                                <Button Text="Editar" 
+                                <Button Text="Guardar" 
                         Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.UpdateTaskCommand}" 
                         CommandParameter="{Binding .}"
                         Grid.Column="2"

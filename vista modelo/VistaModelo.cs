@@ -69,6 +69,8 @@ namespace ToDoList.VistaModelo
             if (task != null)
             {
                 await App.Database.SaveTaskAsync(task);
+                await Application.Current.MainPage.DisplayAlert("Exito", "Tarea guardada con exito.", "Listo");
+
             }
             else
             {
